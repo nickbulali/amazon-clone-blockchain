@@ -1,13 +1,15 @@
 import Link from 'next/link'
-import react from 'react'
+import React, { useContext } from 'react'
 import { ConnectButton } from 'web3uikit'
 import Image from 'next/image'
 import logo from '../assets/amazon_logo.png'
 import logoFull from '../assets/amazon_logo_full.png'
+import { FaBox } from 'react-icons/fa' 
+import { BsFillBookmarkFill } from 'react-icons/bs'
+import { BsFillPersonFill } from 'react-icons/bs'
+import { AiOutlineHistory } from 'react-icons/ai'
+import { AmazonContext } from '../context/AmazonContext'
 
-
-const isAuthenticated = true
-const username = 'Nick'
  
 const styles = {
     container: `h-full w-[300px] flex flex-col bg-[#fff] static`,
@@ -24,6 +26,10 @@ const styles = {
     username: `flex items-center w-full justify-center`,
     setNickname: `text-lg font-bold flex flex-1 items-center mt-[20px] mb-[20px] text-white`,
 }
+
+const isAuthenticated = true
+const nickname = ""
+const username = "Nick"
 
 const Sidebar = () =>{
     return(
@@ -48,15 +54,15 @@ const Sidebar = () =>{
                                     type='text'
                                     placeholder='Username...'
                                     className={styles.usernameInput}
-                                    // value={nickname}
+                                    value={nickname}
                                     // onChange ={e => setNickname(e.target.value)}
                                     />
                                 </div>
                                 <button
                                 className={styles.setNickname}
-                                onclick={handleSetUsername}
+                                onClick={handleSetUsername}
                                 >
-                                    set Nickname
+                                    Set Nickname
                                 </button>
                             </>
                         ) : ( 
@@ -80,8 +86,31 @@ const Sidebar = () =>{
                         height = {30}
                         className = {styles.amazonLogo}
                         />
+                        My Amazon
+                        <br /> board
                     </div>
                 </Link>
+                    <div className={styles.menuItem}>
+                        <FaBox/>
+                        Collections
+                    </div>
+                    <div className={styles.menuItem}>
+                        <BsFillBookmarkFill/>
+                        Saved
+                    </div>
+                    <div className={styles.menuItem}>
+                        <BsFillPersonFill/>
+                        Saved
+                    </div>
+                <Link href='/history'>
+                    <div className={styles.menuItem}>
+                        <AiOutlineHistory />
+                        Transaction History
+                    </div>
+                </Link>
+            </div>
+            <div className={styles.companyName}>
+                <Image src={logoFull} alt='amazon' height={100} width={100}/>
             </div>
         </div>
     )
